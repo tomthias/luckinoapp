@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luckino Design Token Processor</title>
+  
+  <!-- Google Fonts - Raleway -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <!-- File Input (Hidden) -->
+  <input type="file" id="file-importer" style="display: none;" accept=".json,.zip">
+  
+  <div class="app-container">
+    <!-- Modern App Header -->
+    <header class="webapp-header">
+      <div class="header-content">
+        <div class="app-branding">
+          <h1 class="app-title">Luckino Token Processor</h1>
+          <span class="version-badge">v2.0 Beta</span>
+        </div>
+        <div class="header-actions">
+          <button class="header-btn theme-toggle" title="Toggle Dark Mode" id="theme-toggle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 3V2C12 1.44772 11.5523 1 11 1S10 1.44772 10 2V3C10 3.55228 10.4477 4 11 4S12 3.55228 12 3ZM12 21V20C12 19.4477 11.5523 19 11 19S10 19.4477 10 20V21C10 21.5523 10.4477 22 11 22S12 21.5523 12 21ZM22 12H21C20.4477 12 20 11.5523 20 11S20.4477 10 21 10H22C22.5523 10 23 10.4477 23 11S22.5523 12 22 12ZM2 12H1C0.447715 12 0 11.5523 0 11S0.447715 10 1 10H2C2.55228 10 3 10.4477 3 11S2.55228 12 2 12ZM17.6569 6.34315C18.0474 5.95262 18.6806 5.95262 19.0711 6.34315C19.4616 6.73367 19.4616 7.36684 19.0711 7.75736L18.364 8.46447C17.9735 8.85499 17.3403 8.85499 16.9498 8.46447C16.5593 8.07394 16.5593 7.44078 16.9498 7.05025L17.6569 6.34315ZM6.34315 17.6569C6.73367 17.2663 7.36684 17.2663 7.75736 17.6569C8.14788 18.0474 8.14788 18.6806 7.75736 19.0711L7.05025 19.7782C6.65973 20.1687 6.02656 20.1687 5.63604 19.7782C5.24551 19.3877 5.24551 18.7545 5.63604 18.364L6.34315 17.6569Z"/>
+            </svg>
+          </button>
+          <button class="header-btn help-button" title="Help & Documentation" id="help-toggle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Modern Tab Navigation -->
+    <nav class="tab-navigation">
+      <div class="tab-list" role="tablist">
+        <button class="tab-item active" data-tab="import" aria-selected="true">
+          <span class="tab-icon">📥</span>
+          <span class="tab-label">Import</span>
+          <span class="tab-counter" id="import-counter">0</span>
+        </button>
+        <button class="tab-item" data-tab="variables" aria-selected="false">
+          <span class="tab-icon">🎨</span>
+          <span class="tab-label">Variables</span>
+          <span class="tab-counter" id="variables-counter">0</span>
+        </button>
+        <button class="tab-item" data-tab="typography" aria-selected="false">
+          <span class="tab-icon">✏️</span>
+          <span class="tab-label">Typography</span>
+          <span class="tab-counter" id="typography-counter">0</span>
+        </button>
+        <button class="tab-item" data-tab="export" aria-selected="false">
+          <span class="tab-icon">📤</span>
+          <span class="tab-label">Export</span>
+        </button>
+      </div>
+    </nav>
+    
+    <!-- Import Tab -->
+    <div class="tab-content active" id="import-tab">
+      <div class="scrollable-content">
+        <div class="import-container">
+          <!-- Modern Upload Zone -->
+          <div class="upload-zone" id="upload-zone">
+            <div class="upload-content">
+              <div class="upload-icon">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M14.828 14.828a4 4 0 0 1-5.656 0M9 10h1m4 0h1m-7 4h.01M21 12c0 4.418-4.03 8-9 8a9.96 9.96 0 0 1-2.461-.307l-3.353 3.353A.75.75 0 0 1 5.25 22.5l-1.5-1.5a.75.75 0 0 1 .293-.957L7.307 19.04C3.548 17.294 1 14.44 1 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                  <path d="M12 8v8m-4-4l4-4 4 4"/>
+                </svg>
+              </div>
+              <h3>Drag & Drop Token Files</h3>
+              <p>Or <button class="link-btn" id="browse-files-btn">browse files</button></p>
+              <div class="supported-formats">
+                <span class="format-badge">JSON</span>
+                <span class="format-badge">ZIP</span>
+                <span class="format-badge">W3C</span>
+                <span class="format-badge">Token Studio</span>
+              </div>
+            </div>
+            
+            <!-- Upload Progress -->
+            <div class="upload-status" id="upload-status" style="display: none;">
+              <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+              </div>
+              <span class="status-text" id="status-text">Processing...</span>
+            </div>
+          </div>
+          
+          <!-- Example Buttons -->
+          <div class="example-section">
+            <h4>Try with examples:</h4>
+            <div class="example-buttons">
+              <button class="example-button" id="load-simple-example">
+                🎨 Simple Colors
+              </button>
+              <button class="example-button" id="load-multitheme-example">
+                🎨 Multi-Theme System
+              </button>
+              <button class="example-button" id="load-typography-example">
+                ✏️ Typography
+              </button>
+            </div>
+          </div>
+          
+          <!-- Quick Stats -->
+          <div class="import-stats" id="import-stats" style="display: none;">
+            <div class="stat-grid">
+              <div class="stat-item">
+                <span class="stat-number" id="total-tokens-stat">0</span>
+                <span class="stat-label">Total Tokens</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" id="collections-stat">0</span>
+                <span class="stat-label">Collections</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" id="modes-stat">0</span>
+                <span class="stat-label">Modes</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" id="format-stat">-</span>
+                <span class="stat-label">Format</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Variables Tab - MEGA TABLE -->
+    <div class="tab-content" id="variables-tab">
+      <div class="scrollable-content">
+        <div class="variables-manager" id="variables-manager">
+          <!-- Variables Header -->
+          <div class="variables-header">
+            <div class="collection-selector">
+              <select id="collection-filter">
+                <option value="all">All collections</option>
+                <option value="colors">Colors</option>
+                <option value="spacing">Spacing</option>
+                <option value="typography">Typography</option>
+              </select>
+              <span class="total-count" id="total-variables-display">0 variables</span>
+            </div>
+            <div class="table-controls">
+              <input type="search" placeholder="Search variables..." id="variable-search">
+              <div class="view-toggles">
+                <button class="view-toggle active" data-view="table" title="Table View">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/>
+                  </svg>
+                </button>
+                <button class="view-toggle" data-view="cards" title="Cards View">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="bulk-actions" id="bulk-actions" style="display: none;">
+                <span class="selection-count" id="selection-count">0 selected</span>
+                <button class="bulk-btn" id="bulk-export">Export</button>
+                <button class="bulk-btn" id="bulk-delete">Delete</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Variables Table Container -->
+          <div class="variables-table-container">
+            <table class="variables-table" id="variables-table">
+              <thead>
+                <tr>
+                  <th class="col-select">
+                    <input type="checkbox" id="select-all" title="Select All">
+                  </th>
+                  <th class="col-type sortable" data-sort="type">
+                    Type
+                    <svg class="sort-icon" width="12" height="12" viewBox="0 0 24 24">
+                      <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                    </svg>
+                  </th>
+                  <th class="col-name sortable" data-sort="name">
+                    Name
+                    <svg class="sort-icon" width="12" height="12" viewBox="0 0 24 24">
+                      <path d="M7 10l5 5 5-5z" fill="currentColor"/>
+                    </svg>
+                  </th>
+                  <th class="col-values">Values</th>
+                  <th class="col-scope">Scope</th>
+                  <th class="col-actions">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="variables-table-body">
+                <!-- Rows will be generated dynamically -->
+              </tbody>
+            </table>
+            
+            <!-- Empty State -->
+            <div class="table-empty-state" id="table-empty-state">
+              <div class="empty-icon">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+              </div>
+              <h3>No variables loaded</h3>
+              <p>Import a token file to see your variables here</p>
+              <button class="primary" onclick='document.querySelector("[data-tab=import]").click()'>
+                Go to Import
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typography Tab -->
+    <div class="tab-content" id="typography-tab">
+      <div class="scrollable-content">
+        <div class="typography-manager">
+          <div class="section">
+            <div class="section-title">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M4 7V4h16v3"></path>
+                <path d="M9 20h6"></path>
+                <path d="M12 4v16"></path>
+              </svg>
+              Typography Tokens
+            </div>
+            
+            <div class="typography-content">
+              <!-- Typography table will be similar to variables table -->
+              <div class="empty-state">
+                <p>Typography support will be implemented here</p>
+                <small>Text styles import/export from your JSON tokens</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Export Tab -->
+    <div class="tab-content" id="export-tab">
+      <div class="scrollable-content">
+        <div class="export-panel">
+          <div class="section">
+            <div class="section-title">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <path d="M7 10l5 5 5-5"></path>
+                <path d="M12 15V3"></path>
+              </svg>
+              Export Tokens
+            </div>
+            
+            <!-- Format Selection -->
+            <div class="format-selector">
+              <h3>Export Format</h3>
+              <div class="form-group">
+                <select id="export-format" class="select-input">
+                  <option value="w3c" selected>W3C Design Tokens (JSON)</option>
+                  <option value="css">CSS Variables</option>
+                  <option value="tailwind">Tailwind CSS Config</option>
+                  <option value="token-studio">Token Studio Format</option>
+                  <option value="style-dictionary">Style Dictionary</option>
+                </select>
+              </div>
+            </div>
+            
+            <!-- Export Type -->
+            <div class="export-type-selector">
+              <h3>Export Type</h3>
+              <div class="form-group">
+                <select id="export-type" class="select-input">
+                  <option value="single" selected>Single file (all tokens)</option>
+                  <option value="separate">Separate files per collection</option>
+                  <option value="collection-mode-separate">Separate files per collection-mode</option>
+                </select>
+              </div>
+            </div>
+            
+            <!-- Filename -->
+            <div class="filename-selector">
+              <h3>Filename</h3>
+              <div class="form-group">
+                <input type="text" id="export-filename" class="text-input" value="tokens" placeholder="Enter filename...">
+                <small class="form-help">Extension will be added automatically based on format</small>
+              </div>
+            </div>
+            
+            <!-- Export Options -->
+            <div class="export-options">
+              <div class="option-group">
+                <h4>Export Options</h4>
+                <div class="options-grid">
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="include-comments" checked>
+                    <span class="checkmark"></span>
+                    Include comments and descriptions
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="separate-files">
+                    <span class="checkmark"></span>
+                    Separate files per collection
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="minify-output">
+                    <span class="checkmark"></span>
+                    Minify output
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="include-typography">
+                    <span class="checkmark"></span>
+                    Include typography tokens
+                  </label>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Export Actions -->
+            <div class="export-actions">
+              <div class="action-buttons">
+                <button class="export-btn primary" id="export-tokens-btn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4m4-5l5 5 5-5M12 19V3"/>
+                  </svg>
+                  <span>Export Tokens</span>
+                </button>
+                <button class="preview-btn secondary" id="preview-export-btn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  Preview
+                </button>
+              </div>
+              
+              <div class="export-summary" id="export-summary" style="display: none;">
+                <div class="summary-stats">
+                  <span class="stat"><strong id="export-token-count">0</strong> tokens</span>
+                  <span class="stat"><strong id="export-collection-count">0</strong> collections</span>
+                  <span class="stat"><strong id="export-file-count">1</strong> file</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Export Preview -->
+            <div class="export-preview" id="export-preview" style="display: none;">
+              <div class="preview-header">
+                <h4>Export Preview</h4>
+                <button class="preview-close" id="preview-close">×</button>
+              </div>
+              <div class="preview-content">
+                <pre><code id="preview-code"></code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <!-- Footer -->
+  <div class="footer">
+    <div class="credits">
+      <span class="version">v2.0.0</span>
+      <span class="separator">•</span>
+      <span class="author">Made with ❤️ by <a href="#" target="_blank">Mattia</a></span>
+    </div>
+  </div>
+  
+  <!-- Snackbar Container -->
+  <div id="snackbar-container"></div>
+  
+  <!-- Variable Details Panel (Figma-style sidebar) -->
+  <div class="variable-details-panel" id="details-panel" style="display: none;">
+    <div class="panel-header">
+      <div class="panel-title">
+        <h3>Details</h3>
+        <span class="variable-type-indicator" id="detail-type-indicator"></span>
+      </div>
+      <button class="panel-close" id="details-close">&times;</button>
+    </div>
+    
+    <div class="panel-content">
+      <div class="detail-section">
+        <label class="detail-label">Name</label>
+        <input type="text" id="variable-name-input" class="detail-input">
+      </div>
+      
+      <div class="detail-section">
+        <label class="detail-label">Description</label>
+        <textarea id="variable-description" class="detail-textarea" placeholder="How to use this variable" rows="3"></textarea>
+      </div>
+      
+      <div class="detail-section">
+        <label class="detail-label">Values</label>
+        <div class="mode-editors" id="mode-editors"></div>
+      </div>
+      
+      <div class="detail-section">
+        <label class="detail-label">Code syntax</label>
+        <div class="syntax-tabs">
+          <button class="syntax-tab active" data-syntax="css">CSS</button>
+          <button class="syntax-tab" data-syntax="scss">SCSS</button>
+        </div>
+        <div class="syntax-preview-container">
+          <code class="syntax-preview" id="syntax-preview">--colors-primary-500</code>
+          <button class="copy-btn" id="copy-syntax" title="Copy code">📋</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/core/ImportPipelineOrchestrator.js"></script>
+  <script src="js/core/ExportEngine.js"></script>
+  <script src="js/core/TokenProcessor.js"></script>
+  <script src="js/components/VariableTable.js"></script>
+  <script src="js/components/DetailsPanel.js"></script>
+  <script src="js/components/UploadZone.js"></script>
+  <script src="js/examples.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/main.js"></script>
+  
+</body>
+</html>

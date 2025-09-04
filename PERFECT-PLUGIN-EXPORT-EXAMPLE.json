@@ -1,0 +1,238 @@
+{
+  "Design Tokens": {
+    "colors": {
+      "$type": "color",
+      "brand": {
+        "primary": {
+          "$value": "#007AFF",
+          "$description": "Primary brand color - perfect for plugin import"
+        },
+        "secondary": {
+          "$value": "#34C759"
+        }
+      },
+      "semantic": {
+        "success": {
+          "$value": "#28A745"
+        },
+        "error": {
+          "$value": "#DC3545"
+        },
+        "warning": {
+          "$value": "#FFC107"
+        }
+      },
+      "theme": {
+        "background": {
+          "$value": {
+            "light": "#FFFFFF",
+            "dark": "#1A1A1A"
+          },
+          "$description": "Theme-aware background color with light/dark modes"
+        },
+        "text": {
+          "$value": {
+            "light": "#000000",
+            "dark": "#FFFFFF"
+          }
+        },
+        "surface": {
+          "$value": {
+            "light": "#F8F9FA",
+            "dark": "#2D2D2D"
+          }
+        }
+      }
+    },
+    "spacing": {
+      "$type": "dimension",
+      "xs": {
+        "$value": "4px"
+      },
+      "sm": {
+        "$value": "8px"
+      },
+      "md": {
+        "$value": "16px"
+      },
+      "lg": {
+        "$value": "24px"
+      },
+      "xl": {
+        "$value": "32px"
+      },
+      "2xl": {
+        "$value": "48px"
+      }
+    },
+    "typography": {
+      "fontFamily": {
+        "$type": "fontFamily",
+        "primary": {
+          "$value": ["Inter", "system-ui", "sans-serif"],
+          "$description": "Primary font stack"
+        },
+        "mono": {
+          "$value": ["JetBrains Mono", "Monaco", "Consolas", "monospace"]
+        }
+      },
+      "fontWeight": {
+        "$type": "fontWeight",
+        "regular": {
+          "$value": 400
+        },
+        "medium": {
+          "$value": 500
+        },
+        "semibold": {
+          "$value": 600
+        },
+        "bold": {
+          "$value": 700
+        }
+      },
+      "fontSize": {
+        "$type": "dimension",
+        "xs": {
+          "$value": "12px"
+        },
+        "sm": {
+          "$value": "14px"
+        },
+        "md": {
+          "$value": "16px"
+        },
+        "lg": {
+          "$value": "18px"
+        },
+        "xl": {
+          "$value": "20px"
+        },
+        "2xl": {
+          "$value": "24px"
+        }
+      }
+    },
+    "borderRadius": {
+      "$type": "dimension", 
+      "none": {
+        "$value": "0px"
+      },
+      "xs": {
+        "$value": "2px"
+      },
+      "sm": {
+        "$value": "4px"
+      },
+      "md": {
+        "$value": "8px"
+      },
+      "lg": {
+        "$value": "12px"
+      },
+      "full": {
+        "$value": "999px"
+      }
+    },
+    "opacity": {
+      "$type": "number",
+      "disabled": {
+        "$value": 0.5
+      },
+      "hover": {
+        "$value": 0.8
+      },
+      "pressed": {
+        "$value": 0.9
+      }
+    },
+    "duration": {
+      "$type": "duration",
+      "fast": {
+        "$value": "150ms"
+      },
+      "normal": {
+        "$value": "250ms"
+      },
+      "slow": {
+        "$value": "400ms"
+      }
+    }
+  },
+  "Components": {
+    "button": {
+      "primary": {
+        "background": {
+          "$type": "color",
+          "$value": "{Design Tokens.colors.brand.primary}",
+          "$description": "Uses alias reference to brand primary color"
+        },
+        "text": {
+          "$type": "color", 
+          "$value": "#FFFFFF"
+        },
+        "borderRadius": {
+          "$type": "dimension",
+          "$value": "{Design Tokens.borderRadius.sm}"
+        },
+        "padding": {
+          "x": {
+            "$type": "dimension",
+            "$value": "{Design Tokens.spacing.md}"
+          },
+          "y": {
+            "$type": "dimension", 
+            "$value": "{Design Tokens.spacing.sm}"
+          }
+        }
+      },
+      "secondary": {
+        "background": {
+          "$type": "color",
+          "$value": "{Design Tokens.colors.theme.surface}",
+          "$description": "Theme-aware background using multi-mode value"
+        },
+        "text": {
+          "$type": "color",
+          "$value": "{Design Tokens.colors.theme.text}"
+        },
+        "border": {
+          "color": {
+            "$type": "color",
+            "$value": "{Design Tokens.colors.brand.primary}"
+          },
+          "width": {
+            "$type": "dimension",
+            "$value": "1px"
+          }
+        }
+      }
+    },
+    "card": {
+      "background": {
+        "$type": "color",
+        "$value": "{Design Tokens.colors.theme.background}"
+      },
+      "border": {
+        "radius": {
+          "$type": "dimension",
+          "$value": "{Design Tokens.borderRadius.lg}"
+        }
+      },
+      "padding": {
+        "$type": "dimension",
+        "$value": "{Design Tokens.spacing.lg}"
+      },
+      "shadow": {
+        "$type": "shadow",
+        "$value": {
+          "offsetX": "0px",
+          "offsetY": "2px", 
+          "blur": "8px",
+          "spread": "0px",
+          "color": "rgba(0, 0, 0, 0.1)"
+        }
+      }
+    }
+  }
+}

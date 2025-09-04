@@ -1,0 +1,48 @@
+{
+  "design-system": {
+    "colors": {
+      "primary": {
+        "$type": "color",
+        "$value": "#007AFF",
+        "$description": "Primary brand color"
+      },
+      "theme": {
+        "background": {
+          "$type": "color",
+          "$value": {
+            "light": "#FFFFFF",
+            "dark": "#1A1A1A"
+          }
+        }
+      }
+    },
+    "spacing": {
+      "xs": {
+        "$type": "dimension",
+        "$value": "4px"
+      }
+    },
+    "typography": {
+      "font-family": {
+        "primary": {
+          "$type": "fontFamily",
+          "$value": [
+            "Inter",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    }
+  },
+  "components": {
+    "components": {
+      "button": {
+        "background": {
+          "$type": "color",
+          "$value": "{design-system.colors.primary}"
+        }
+      }
+    }
+  }
+}

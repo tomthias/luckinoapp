@@ -1,0 +1,143 @@
+{
+  "design-system": {
+    "colors": {
+      "primary": {
+        "$type": "color",
+        "$value": "#007AFF",
+        "$description": "Primary brand color"
+      },
+      "semantic": {
+        "success": {
+          "$type": "color",
+          "$value": "#28A745"
+        },
+        "error": {
+          "$type": "color", 
+          "$value": "#DC3545"
+        }
+      },
+      "theme": {
+        "background": {
+          "$type": "color",
+          "$value": {
+            "light": "#FFFFFF",
+            "dark": "#1A1A1A"
+          }
+        },
+        "text": {
+          "$type": "color",
+          "$value": {
+            "light": "#000000",
+            "dark": "#FFFFFF"
+          }
+        }
+      }
+    },
+    "spacing": {
+      "xs": {
+        "$type": "dimension",
+        "$value": "4px"
+      },
+      "sm": {
+        "$type": "dimension", 
+        "$value": "8px"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "16px"
+      },
+      "lg": {
+        "$type": "dimension",
+        "$value": "24px"
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "32px"
+      }
+    },
+    "typography": {
+      "font-family": {
+        "primary": {
+          "$type": "fontFamily",
+          "$value": ["Inter", "system-ui", "sans-serif"]
+        },
+        "mono": {
+          "$type": "fontFamily",
+          "$value": ["JetBrains Mono", "Monaco", "monospace"]
+        }
+      },
+      "font-weight": {
+        "normal": {
+          "$type": "fontWeight",
+          "$value": 400
+        },
+        "medium": {
+          "$type": "fontWeight", 
+          "$value": 500
+        },
+        "bold": {
+          "$type": "fontWeight",
+          "$value": 700
+        }
+      },
+      "font-size": {
+        "sm": {
+          "$type": "dimension",
+          "$value": "14px"
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": "16px"
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": "18px"
+        }
+      }
+    },
+    "border-radius": {
+      "sm": {
+        "$type": "dimension",
+        "$value": "4px"
+      },
+      "md": {
+        "$type": "dimension",
+        "$value": "8px"
+      },
+      "lg": {
+        "$type": "dimension", 
+        "$value": "12px"
+      }
+    },
+    "opacity": {
+      "disabled": {
+        "$type": "number",
+        "$value": 0.5
+      },
+      "hover": {
+        "$type": "number",
+        "$value": 0.8
+      }
+    }
+  },
+  "components": {
+    "button": {
+      "background": {
+        "$type": "color",
+        "$value": "{design-system.colors.primary}"
+      },
+      "padding-x": {
+        "$type": "dimension",
+        "$value": "{design-system.spacing.md}"
+      },
+      "padding-y": {
+        "$type": "dimension",
+        "$value": "{design-system.spacing.sm}"
+      },
+      "border-radius": {
+        "$type": "dimension",
+        "$value": "{design-system.border-radius.sm}"
+      }
+    }
+  }
+}
